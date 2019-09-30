@@ -10,6 +10,9 @@ function validateEmail(value) {
 }
 
 function Input({ label = null, name, text = 'text', value = '', onChange, error = false }) {
+  let inputClass = 'form__input';
+  if(error) inputClass += ' form__input_error';
+
   return(
     <>
       {label && <label htmlFor={name} className='form__label'>{label}</label>}
@@ -19,7 +22,7 @@ function Input({ label = null, name, text = 'text', value = '', onChange, error 
         type={text} 
         value={value} 
         onChange={onChange}
-        className={error ? 'form__input form__input_error' : 'form__input'}
+        className={inputClass}
       /> 
     </>
   );

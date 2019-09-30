@@ -1,0 +1,16 @@
+.table {
+  text-align: left;
+  border-radius: 4px 4px 0 0;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table_full {
+  width: 100%;
+}
+
+.table__cell {
+  border-bottom: 1px solid #e8e8e8;
+  background-color: white;
+  padding: 16px 16px;
+}
