@@ -1,11 +1,11 @@
 import React from 'react';
 import './Table.css';
 
-function chunk(array, size) {
+function chunk(array, size, rows) {
   let results = [];
 
-  while (array.length) {
-    results.push(array.splice(0, size))
+  while (array.length && results.length < rows.length) {
+    results.push(array.splice(0, size));
   }
 
   return results;
@@ -29,9 +29,8 @@ function Row({ row = [], index = 0 }) {
   )
 }
 
-function Table({ columns = [], cell = [] }) {
-
-  const results = chunk([...cell], columns.length);
+function Table({ columns = [], rows = [], cell = [] }) {
+  const results = chunk([...cell], columns.length, rows);
 
   return (
     <table className='table table_full'>

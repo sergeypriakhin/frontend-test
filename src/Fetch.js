@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 
 const { CancelToken } = axios;
 
+const err = { error: false, message: '' }
+
 const useFetch = ({ url, method = 'get' }) => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({});
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(err);
 
   useEffect(() => {
 
@@ -25,8 +27,8 @@ const useFetch = ({ url, method = 'get' }) => {
     }).catch(error => {
       setLoading(false);
       setError({
-        status: error.response.status,
-        statusText: error.response.statusText,
+        error: true,
+        message: `${error.response.status} ${ error.response.statusText}`
       })
     });
 

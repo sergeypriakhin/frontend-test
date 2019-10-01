@@ -1,27 +1,28 @@
 import React from 'react';
 import Form from './Form';
 import Table from './Table';
+import Spin from './Spin';
 import useFetch from './Fetch';
 import './App.css';
 
-const url = 'https://next.json-generator.com/api/json/get/E1A1DDiPw';
+const url = 'https://next.json-generator.com/api/json/get/E1A1DDiPw?status=200&delay=1000';
 
 function App() {
   const [ loading, data, error ] = useFetch({ url });
   const { columns = [], rows = [], cell = [] } = data;
 
-  if(loading) return 'Loading ...';
-  if(error) return `Error: ${error.status} ${error.statusText}`;
+  if(error.error) return `Error: ${error.message}`;
 
   return (
     <div className="app">
-      <Form />
-      <h3>Table</h3>
-      <Table
-        columns={columns}
-        rows={rows}
-        cell={cell}
-      />
+      <Form cls='app__form' />
+      <Spin spinning={loading}>
+        <Table
+          columns={columns}
+          rows={rows}
+          cell={cell}
+        />
+      </Spin>
     </div>
   );
 }

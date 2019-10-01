@@ -13,7 +13,7 @@ function Input({ label = null, name, text = 'text', value = '', onChange, error 
   let inputClass = 'form__input';
   if(error) inputClass += ' form__input_error';
 
-  return(
+  return (
     <>
       {label && <label htmlFor={name} className='form__label'>{label}</label>}
       <input
@@ -28,20 +28,22 @@ function Input({ label = null, name, text = 'text', value = '', onChange, error 
   );
 }
 
-function Form() {
+function Form({  cls = null }) {
   const [ value, setValue ] = useState('');
   const [ error, setError ] = useState(false);
+  let formClass = 'form';
+  if(cls) formClass += ` ${cls}`;
 
   const handleChange = (e) => {
     let val = e.target.value;
     let err = validateEmail(val);
 
     setError(err);
-    setValue(val)
+    setValue(val);
   };
 
   return (
-    <form className='form'>
+    <form className={formClass}>
       <Input 
         name='email'
         type='email'
